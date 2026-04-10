@@ -39,17 +39,17 @@ O **Catálogo de Reciclagem** é uma aplicação web simples que permite listar 
     python manage.py runserver
     Acesse http://127.0.0.1:8000/ no seu navegador.
 
-🧪 Como rodar os testes
+## 🧪 Como rodar os testes
 
 A aplicação possui testes automatizados. Para executá-los, utilize o comando: 
         python manage.py test
 
-🧹 Como rodar o Linting
+## 🧹 Como rodar o Linting
 
 Para verificar a formatação e a qualidade estática do código, execute:  
         flake8
 
 
-👨‍💻 Autor
+## 👨‍💻 Autor
 
 Gabriel Andrade Couto
