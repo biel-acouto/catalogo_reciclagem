@@ -18,7 +18,7 @@ O **Catálogo de Reciclagem** é uma aplicação web simples que permite listar 
 
 1. Clone este repositório:
 
-    git clone <LINK_DO_SEU_REPOSITORIO_AQUI>
+    git clone <https://github.com/biel-acouto/catalogo_reciclagem.git>
 
 2. Acesse a pasta do projeto:
 
