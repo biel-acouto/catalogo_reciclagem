@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Catálogo de Reciclagem</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f9;
+        margin: 0;
+        padding: 20px;
+      }
+      h1 {
+        color: #2c7a7b;
+        text-align: center;
+      }
+      .card {
+        background: white;
+        padding: 20px;
+        margin-bottom: 15px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      .card h2 {
+        margin-top: 0;
+        color: #2d3748;
+      }
+      .card p {
+        color: #4a5568;
+        line-height: 1.5;
+      }
+      .materials {
+        font-weight: bold;
+        color: #2b6cb0;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>♻️ Pontos de Descarte Reciclável</h1>
+
+    <div style="max-width: 800px; margin: auto">
+      {% for ponto in pontos %}
+      <div class="card">
+        <h2>{{ ponto.nome }}</h2>
+        <p>📍 <strong>Endereço:</strong> {{ ponto.endereco }}</p>
+        <p class="materials">
+          📦 Materiais aceitos: {{ ponto.materiais_aceitos }}
+        </p>
+      </div>
+      {% empty %}
+      <div class="card">
+        <p>Nenhum ponto de coleta cadastrado ainda.</p>
+      </div>
+      {% endfor %}
+    </div>
+  </body>
+</html>
