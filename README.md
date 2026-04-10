@@ -31,22 +31,26 @@ O **Catálogo de Reciclagem** é uma aplicação web simples que permite listar 
 
 4. Instale as dependências:
 
-    pip install -r requirements.txt
+        pip install -r requirements.txt
 
 5. Crie o banco de dados e rode o servidor:
 
-    python manage.py migrate
-    python manage.py runserver
-    Acesse http://127.0.0.1:8000/ no seu navegador.
+        python manage.py migrate
+
+        python manage.py runserver
+
+    Acesse (http://127.0.0.1:8000/) no seu navegador.
 
 ## 🧪 Como rodar os testes
 
 A aplicação possui testes automatizados. Para executá-los, utilize o comando: 
+
         python manage.py test
 
 ## 🧹 Como rodar o Linting
 
-Para verificar a formatação e a qualidade estática do código, execute:  
+Para verificar a formatação e a qualidade estática do código, execute: 
+
         flake8
 
 
