@@ -1,6 +1,6 @@
 # ♻️ Catálogo de Reciclagem
 
-**Versão:** 1.0.0
+**Versão:** 1.0.3
 
 ## 🎯 O Problema
 Muitas pessoas desejam descartar materiais recicláveis ou perigosos (como pilhas, baterias, óleo de cozinha e lixo eletrônico) de forma correta, mas desconhecem os pontos de coleta próximos às suas residências. Isso gera acúmulo de lixo tóxico ou descarte irregular no meio ambiente.
