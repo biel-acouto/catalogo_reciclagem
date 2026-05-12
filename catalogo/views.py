@@ -1,9 +1,40 @@
 from django.shortcuts import render
 from .models import PontoDeColeta
+import requests
 
 
 def home(request):
-    # Pega todos os pontos de coleta cadastrados no banco
     pontos = PontoDeColeta.objects.all()
-    # Envia esses dados para um arquivo HTML que vamos criar
-    return render(request, 'index.html', {'pontos': pontos})
+    endereco_busca = None
+    erro = None
+
+    # Verifica se o usuário digitou um CEP na URL (via GET)
+    cep = request.GET.get('cep')
+
+    if cep:
+        # Limpa o CEP deixando apenas os números
+        cep = ''.join(filter(str.isdigit, cep))
+
+        if len(cep) == 8:
+            # Faz a requisição HTTP GET para a API pública do ViaCEP
+            resposta = requests.get(f'https://viacep.com.br/ws/{cep}/json/')
+
+            if resposta.status_code == 200:
+                dados = resposta.json()
+                if 'erro' not in dados:
+                    endereco_busca = (
+                        f"{dados['logradouro']}, {dados['bairro']}"
+                        f"{dados['localidade']}/{dados['uf']}"
+                    )
+                else:
+                    erro = "CEP não encontrado."
+            else:
+                erro = "Erro ao buscar o CEP na API."
+        else:
+            erro = "CEP inválido. Digite 8 números."
+
+    return render(request, 'index.html', {
+        'pontos': pontos,
+        'endereco_busca': endereco_busca,
+        'erro': erro
+    })

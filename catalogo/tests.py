@@ -1,5 +1,6 @@
 from django.test import TestCase
 from django.urls import reverse
+from unittest.mock import patch
 from .models import PontoDeColeta
 
 
@@ -25,5 +26,24 @@ class PontoDeColetaTestCase(TestCase):
     # Teste 3: Valida se a página inicial carrega e exibe o ponto criado
     def test_pagina_inicial_carrega_corretamente(self):
         resposta = self.client.get(reverse('home'))
-        self.assertEqual(resposta.status_code, 200)  # 200 significa "OK" na web
+        self.assertEqual(resposta.status_code, 200)
         self.assertContains(resposta, "EcoPonto Teste")
+
+    # Teste 4: Teste de Integração (Mock) da API ViaCEP
+    @patch('catalogo.views.requests.get')
+    def test_integracao_api_viacep(self, mock_get):
+        # 1. Configuramos o "dublê" para fingir ser a resposta do ViaCEP
+        mock_get.return_value.status_code = 200
+        mock_get.return_value.json.return_value = {
+            "logradouro": "Rua da Integracao",
+            "bairro": "Bairro Mock",
+            "localidade": "Cidade Teste",
+            "uf": "TT"
+        }
+
+        # 2. Simulamos o usuário fazendo uma busca com um CEP qualquer
+        resposta = self.client.get(reverse('home') + '?cep=12345678')
+
+        # 3. Verificamos se a nossa view processou e exibiu os dados do dublê na tela
+        self.assertEqual(resposta.status_code, 200)
+        self.assertContains(resposta, "Rua da Integracao, Bairro Mock - Cidade Teste/TT")
