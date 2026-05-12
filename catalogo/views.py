@@ -22,10 +22,14 @@ def home(request):
             if resposta.status_code == 200:
                 dados = resposta.json()
                 if 'erro' not in dados:
-                    endereco_busca = (
-                        f"{dados['logradouro']}, {dados['bairro']}"
-                        f"{dados['localidade']}/{dados['uf']}"
-                    )
+                    # Separamos em variáveis para respeitar o limite de caracteres do Flake8
+                    logradouro = dados['logradouro']
+                    bairro = dados['bairro']
+                    cidade = dados['localidade']
+                    uf = dados['uf']
+
+                    # Montamos a string final com o hífen e os espaços corretos
+                    endereco_busca = f"{logradouro}, {bairro} - {cidade}/{uf}"
                 else:
                     erro = "CEP não encontrado."
             else:
