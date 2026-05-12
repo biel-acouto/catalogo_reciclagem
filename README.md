@@ -1,18 +1,22 @@
 # ♻️ Catálogo de Reciclagem
 
-**Versão:** 1.0.4
+🌍 **Aplicação Online:** [Acesse o Catálogo Aqui](https://catalogo-reciclagem-gabriel-andrade.onrender.com)
+
+**Versão:** 1.0.5
 
 ## 🎯 O Problema
 Muitas pessoas desejam descartar materiais recicláveis ou perigosos (como pilhas, baterias, óleo de cozinha e lixo eletrônico) de forma correta, mas desconhecem os pontos de coleta próximos às suas residências. Isso gera acúmulo de lixo tóxico ou descarte irregular no meio ambiente.
 
 ## 💡 A Solução
-O **Catálogo de Reciclagem** é uma aplicação web simples que permite listar e visualizar pontos de descarte reciclável. A aplicação visa conectar o cidadão aos locais adequados de coleta, promovendo a sustentabilidade e facilitando o acesso à informação.
+O **Catálogo de Reciclagem** é uma aplicação web simples que permite listar e visualizar pontos de descarte reciclável. A aplicação visa conectar o cidadão aos locais adequados de coleta, promovendo a sustentabilidade e facilitando o acesso à informação. O sistema também conta com integração à API do ViaCEP para busca automática de localidade.
 
 ## 🛠️ Tecnologias Utilizadas
 * **Linguagem:** Python 3
 * **Framework:** Django
+* **Integração:** API REST (ViaCEP)
 * **Banco de Dados:** SQLite (padrão do Django)
-* **Qualidade de Código:** Flake8 (Linting) e GitHub Actions (CI)
+* **Qualidade de Código:** Flake8 (Linting) e GitHub Actions (CI/CD)
+* **Hospedagem (Deploy):** Render e Gunicorn
 
 ## 🚀 Como instalar e executar
 
