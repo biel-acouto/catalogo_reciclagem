@@ -6,74 +6,159 @@
     <title>Catálogo de Reciclagem</title>
     <style>
       body {
-        font-family: Arial, sans-serif;
-        background-color: #f4f4f9;
+        font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        background-color: #f4f9f4; /* Fundo com tom ecológico mais leve */
         margin: 0;
-        padding: 20px;
+        padding: 0;
+      }
+      /* Novo Cabeçalho (Navbar) */
+      header {
+        background-color: #2c7a7b;
+        padding: 15px 0;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      }
+      nav {
+        max-width: 800px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+      }
+      nav a {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 1.1em;
+        transition: color 0.3s ease;
+      }
+      nav a:hover {
+        color: #b2f5ea;
+      }
+      
+      .container {
+        max-width: 800px;
+        margin: 30px auto;
+        padding: 0 20px;
       }
       h1 {
-        color: #2c7a7b;
+        color: #285e61;
         text-align: center;
+        margin-bottom: 30px;
       }
       .card {
         background: white;
-        padding: 20px;
-        margin-bottom: 15px;
-        border-radius: 8px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding: 25px;
+        margin-bottom: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        transition: transform 0.2s ease;
+      }
+      .card:hover {
+        transform: translateY(-3px);
       }
       .card h2 {
         margin-top: 0;
         color: #2d3748;
+        border-bottom: 2px solid #e2e8f0;
+        padding-bottom: 10px;
       }
       .card p {
         color: #4a5568;
-        line-height: 1.5;
+        line-height: 1.6;
       }
       .materials {
         font-weight: bold;
         color: #2b6cb0;
+        background-color: #ebf8ff;
+        padding: 8px 12px;
+        border-radius: 6px;
+        display: inline-block;
+        margin-top: 10px;
       }
       .search-box {
         background-color: #e6fffa;
-        border: 1px solid #319795;
+        border: 2px solid #319795;
         text-align: center;
       }
+      .search-box h2 {
+        border-bottom: none;
+        color: #234e52;
+      }
+      form {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 15px;
+      }
       input[type="text"] {
-        padding: 10px;
-        width: 60%;
-        max-width: 300px;
+        padding: 12px;
+        width: 100%;
+        max-width: 350px;
         border: 1px solid #cbd5e0;
-        border-radius: 4px;
+        border-radius: 6px;
+        font-size: 1em;
       }
       button {
-        padding: 10px 20px;
+        padding: 12px 25px;
         background-color: #319795;
         color: white;
         border: none;
-        border-radius: 4px;
+        border-radius: 6px;
         cursor: pointer;
         font-weight: bold;
+        font-size: 1em;
+        transition: background-color 0.3s ease;
       }
       button:hover {
-        background-color: #2c7a7b;
+        background-color: #285e61;
       }
       .success-msg {
         color: #2b6cb0;
         font-size: 1.1em;
         margin-top: 15px;
+        background: #ebf8ff;
+        padding: 10px;
+        border-radius: 6px;
       }
       .error-msg {
-        color: #e53e3e;
+        color: #c53030;
         font-weight: bold;
         margin-top: 15px;
+        background: #fff5f5;
+        padding: 10px;
+        border-radius: 6px;
+      }
+      /* Novo Rodapé */
+      footer {
+        text-align: center;
+        margin-top: 50px;
+        padding: 20px;
+        color: #718096;
+        font-size: 0.9em;
+      }
+      
+      /* Responsividade para celulares */
+      @media (max-width: 600px) {
+        form {
+          flex-direction: column;
+        }
+        input[type="text"] {
+          max-width: 100%;
+        }
       }
     </style>
   </head>
   <body>
-    <h1>♻️ Pontos de Descarte Reciclável</h1>
+    <header>
+      <nav>
+        <a href="/">🏠 Home</a>
+        <a href="/sobre/">📖 Sobre o Projeto</a>
+      </nav>
+    </header>
 
-    <div style="max-width: 800px; margin: auto">
+    <div class="container">
+      <h1>♻️ Pontos de Descarte Reciclável</h1>
+
       <div class="card search-box">
         <h2>🔍 Descubra sua Região</h2>
         <p>
@@ -82,7 +167,7 @@
         </p>
 
         <form method="GET" action="/">
-          <input type="text" name="cep" placeholder="Ex: 01001000" required />
+          <input type="text" name="cep" placeholder="Ex: 01001-000" required />
           <button type="submit">Buscar Localidade</button>
         </form>
 
@@ -94,26 +179,9 @@
           Verifique os pontos de descarte disponíveis abaixo para a sua
           localidade!
         </p>
-        {% endif %} {% if erro %}
+        {% endif %} 
+        
+        {% if erro %}
         <p class="error-msg">❌ {{ erro }}</p>
         {% endif %}
       </div>
-
-      <hr style="border: 1px solid #cbd5e0; margin: 30px 0" />
-
-      {% for ponto in pontos %}
-      <div class="card">
-        <h2>{{ ponto.nome }}</h2>
-        <p>📍 <strong>Endereço:</strong> {{ ponto.endereco }}</p>
-        <p class="materials">
-          📦 Materiais aceitos: {{ ponto.materiais_aceitos }}
-        </p>
-      </div>
-      {% empty %}
-      <div class="card">
-        <p>Nenhum ponto de coleta cadastrado ainda.</p>
-      </div>
-      {% endfor %}
-    </div>
-  </body>
-</html>
