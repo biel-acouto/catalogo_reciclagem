@@ -1,6 +1,0 @@
-Django
-requests
-flake8
-psycopg2-binary
-dj-database-url
-python-dotenv
