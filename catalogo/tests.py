@@ -27,7 +27,7 @@ class PontoDeColetaTestCase(TestCase):
     def test_pagina_inicial_carrega_corretamente(self):
         resposta = self.client.get(reverse('home'))
         self.assertEqual(resposta.status_code, 200)
-        self.assertContains(resposta, "EcoPonto Teste")
+        self.assertContains(resposta, "Pontos de Descarte")
 
     # Teste 4: Teste de Integração (Mock) da API ViaCEP
     @patch('catalogo.views.requests.get')
