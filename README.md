@@ -71,3 +71,8 @@ Para verificar a formatação e a qualidade estática do código, execute:
 ## 👨‍💻 Autor
 
 Gabriel Andrade Couto
+
+## Colaboradores
+
+Guilheme Oliveira
+Pedro Henrique Alves
